@@ -35,7 +35,7 @@ jobs:
           make setup
           cd out/linux64/poky
           echo $PWD
-          . ./oe-init-build-env
+          . oe-init-build-env
           echo $PWD
           cd ..
           echo $PWD
