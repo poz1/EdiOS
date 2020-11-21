@@ -35,6 +35,7 @@ jobs:
           make setup
           cd out/linux64/poky
           . ./oe-init-build-env
+          ls -l
           sed -i '/^INHERIT += "sanity"$/s/^/#/' /meta/conf/sanity.conf
           cd ..
           bitbake -k edison-image
