@@ -302,12 +302,12 @@ COPYLEFT_LICENSE_INCLUDE = 'GPL* LGPL*'
   echo "Cloning Mingw layer to ${mingw_dir} directory from local cache"
   git clone -b ${yocto_branch} ${my_dl_dir}/meta-mingw-mirror.git meta-mingw
 
-  darwin_dir=$poky_dir/meta-darwin
-  echo "Cloning Darwin layer to ${darwin_dir} directory from local cache"
-  git clone ${my_dl_dir}/meta-darwin-mirror.git meta-darwin
-  cd ${darwin_dir}
-  git checkout 29b5ff31cee24e796f2eb2d2fd1269e3e92c831c
-  git apply $top_repo_dir/meta-intel-edison/utils/0001-Update-gcc-patch.patch
+  # darwin_dir=$poky_dir/meta-darwin
+  # echo "Cloning Darwin layer to ${darwin_dir} directory from local cache"
+  # git clone ${my_dl_dir}/meta-darwin-mirror.git meta-darwin
+  # cd ${darwin_dir}
+  # git checkout 29b5ff31cee24e796f2eb2d2fd1269e3e92c831c
+  # git apply $top_repo_dir/meta-intel-edison/utils/0001-Update-gcc-patch.patch
 
   cd $poky_dir
   oe_dir=$poky_dir/meta-openembedded
