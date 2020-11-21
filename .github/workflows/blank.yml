@@ -35,6 +35,8 @@ jobs:
           make setup
           cd out/linux64/poky
           . ./oe-init-build-env
+          cd ..
+          cd ..
           ls -l -R
           sed -i '/^INHERIT += "sanity"$/s/^/#/' /conf/sanity.conf
           cd ..
