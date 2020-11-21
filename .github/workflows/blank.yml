@@ -36,8 +36,6 @@ jobs:
           cd out/linux64
           source poky/oe-init-build-env
           echo $PWD
-          cd ..
-          echo $PWD
-          sed -i '/^INHERIT += "sanity"$/s/^/#/' poky/meta/conf/sanity.conf
+          sed -i '/^INHERIT += "sanity"$/s/^/#/' ../poky/meta/conf/sanity.conf
           echo $PWD
           bitbake -k edison-image
