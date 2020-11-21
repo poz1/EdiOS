@@ -25,7 +25,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: permissions
-        run: sudo chmod -R 777 $GITHUB_WORKSPACE /github /__w/_temp
+        run: 
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
         
@@ -37,5 +37,6 @@ jobs:
           make setup
           cd out/linux64/poky
           . ./oe-init-build-env
+          sed -i '/^INHERIT += "sanity"$/s/^/#/' /meta/conf/sanity.conf
           cd ..
           bitbake -k edison-image
