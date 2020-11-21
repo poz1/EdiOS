@@ -353,20 +353,20 @@ COPYLEFT_LICENSE_INCLUDE = 'GPL* LGPL*'
 
   # Apply patch on top of it allowing to perform build in external source directory
   echo "Applying patch on poky"
-  cd $poky_dir
-  git apply $top_repo_dir/meta-intel-edison/utils/0001-u-boot-Fix-path-to-merge_config.sh.patch
-  cd $mingw_dir
-  git apply $top_repo_dir/meta-intel-edison/utils/0001-Enable-SDKTAROPTS.patch
+  # cd $poky_dir
+  # git apply $top_repo_dir/meta-intel-edison/utils/0001-u-boot-Fix-path-to-merge_config.sh.patch
+  # cd $mingw_dir
+  # git apply $top_repo_dir/meta-intel-edison/utils/0001-Enable-SDKTAROPTS.patch
 
-  if [[ $my_sdk_host == win* ]]
-  then
-    do_append_layer $mingw_dir
-  fi
+  # if [[ $my_sdk_host == win* ]]
+  # then
+  #   do_append_layer $mingw_dir
+  # fi
 
-  if [[ $my_sdk_host == macosx ]]
-  then
-    do_append_layer $darwin_dir
-  fi
+  # if [[ $my_sdk_host == macosx ]]
+  # then
+  #   do_append_layer $darwin_dir
+  # fi
 
   yocto_conf_dir=$my_build_dir/build/conf
 
