@@ -34,5 +34,5 @@ jobs:
           ln -s utils/Makefile.mk Makefile
           make setup
           cd /__w/meta-intel-edison/meta-intel-edison/out/linux64
-          source poky/oe-init-build-env
+          . poky/oe-init-build-env
           bitbake -k edison-image
