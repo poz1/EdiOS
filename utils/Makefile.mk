@@ -24,17 +24,17 @@ SDK_HOST ?= linux64
 setup: pub bbcache
 	@echo Setup buildenv for SDK host $(SDK_HOST)
 	@mkdir -p out/$(SDK_HOST)
-	./meta-intel-edison/setup.sh $(SETUP_ARGS) --dl_dir=$(BB_DL_DIR) --sstate_dir=$(BB_SSTATE_DIR) --build_dir=$(CURDIR)/out/$(SDK_HOST) --build_name=$(BUILD_TAG) --sdk_host=$(SDK_HOST)
+	./setup.sh $(SETUP_ARGS) --dl_dir=$(BB_DL_DIR) --sstate_dir=$(BB_SSTATE_DIR) --build_dir=$(CURDIR)/out/$(SDK_HOST) --build_name=$(BUILD_TAG) --sdk_host=$(SDK_HOST)
 	@rm -f out/current
 	@ln -s $(CURDIR)/out/$(SDK_HOST) $(CURDIR)/out/current
 	@if [ $(SDK_HOST) = macosx ]; then  /bin/bash -c "source out/current/poky/oe-init-build-env $(CURDIR)/out/current/build ; bitbake odcctools2-crosssdk -c cleansstate" ; echo "Please make sure that OSX-sdk.zip is available in your bitbake download directory" ; fi
 
 update: _check_old_setup_exits
 	@echo Updating buildenv for SDK host $(SDK_HOST). If it does, try "make cleansstate". If no luck, try "make setup", this will clean out your out directory
-	./meta-intel-edison/setup.sh $(SETUP_ARGS) --dl_dir=$(BB_DL_DIR) --sstate_dir=$(BB_SSTATE_DIR) --build_dir=$(CURDIR)/out/$(SDK_HOST) --build_name=$(BUILD_TAG) --sdk_host=$(SDK_HOST)
+	./setup.sh $(SETUP_ARGS) --dl_dir=$(BB_DL_DIR) --sstate_dir=$(BB_SSTATE_DIR) --build_dir=$(CURDIR)/out/$(SDK_HOST) --build_name=$(BUILD_TAG) --sdk_host=$(SDK_HOST)
 
 cleansstate: _check_setup_was_done
-	/bin/bash -c "source out/current/poky/oe-init-build-env $(CURDIR)/out/current/build ; $(CURDIR)/meta-intel-edison/utils/invalidate_sstate.sh $(CURDIR)/out/current/build"
+	/bin/bash -c "source out/current/poky/oe-init-build-env $(CURDIR)/out/current/build ; $(CURDIR)/utils/invalidate_sstate.sh $(CURDIR)/out/current/build"
 
 devtools_package: _check_setup_was_done
 	/bin/bash -c "source out/current/poky/oe-init-build-env $(CURDIR)/out/current/build ; $(CURDIR)/meta-intel-edison-devtools/utils/create_devtools_package.sh $(CURDIR)/out/current/build"
@@ -51,11 +51,11 @@ clean:
 
 u-boot linux-externalsrc edison-image virtual/kernel: cleansstate
 	/bin/bash -c "source out/current/poky/oe-init-build-env $(CURDIR)/out/current/build ; bitbake $@"
-	./meta-intel-edison/utils/flash/postBuild.sh $(CURDIR)/out/current/build
+	./utils/flash/postBuild.sh $(CURDIR)/out/current/build
 
 meta-toolchain arduino-toolchain: _check_setup_was_done
 	/bin/bash -c "source out/current/poky/oe-init-build-env $(CURDIR)/out/current/build ; bitbake -c cleansstate $@ ; bitbake $@"
-	./meta-intel-edison/utils/flash/postBuild.sh $(CURDIR)/out/current/build
+	./utils/flash/postBuild.sh $(CURDIR)/out/current/build
 
 bootloader: u-boot
 
@@ -66,14 +66,14 @@ kernel: virtual/kernel
 toolchain: meta-toolchain
 
 postbuild:
-	./meta-intel-edison/utils/flash/postBuild.sh $(CURDIR)/out/current/build
+	./utils/flash/postBuild.sh $(CURDIR)/out/current/build
 
 flash: _check_postbuild_was_done
 	./out/current/build/toFlash/flashall.sh
 
 debian: edison-image
-	@sudo $(CURDIR)/meta-intel-edison/utils/debian_1_create.sh buster
-	@sudo $(CURDIR)/meta-intel-edison/utils/debian_2_mkimage.sh buster
+	@sudo $(CURDIR)/utils/debian_1_create.sh buster
+	@sudo $(CURDIR)/utils/debian_2_mkimage.sh buster
 
 clean_debian:
 	@sudo rm -rf out/linux64/build/buster
@@ -100,7 +100,7 @@ help:
 	@echo ' BUILD_TAG      - set the build name used for e.g. artifact file naming'
 	@echo ' BB_DL_DIR     - defines the directory (absolute path) where bitbake places downloaded files (defaults to bbcache/downloads)'
 	@echo ' BB_SSTATE_DIR - defines the directory (absolute path) where bitbake places shared-state files (defaults to bbcache/sstate-cache)'
-	@echo ' SETUP_ARGS    - control advanced behaviour of the setup script (run ./meta-intel-edison/setup.sh --help for more details)'
+	@echo ' SETUP_ARGS    - control advanced behaviour of the setup script (run ./setup.sh --help for more details)'
 	@echo ' SDK_HOST      - the host on which the SDK will run. Must be one of [win32, win64, linux32, linux64, macosx]'
 
 
