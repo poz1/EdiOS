@@ -89,8 +89,8 @@ BBLAYERS ?= " \\
   $top_repo_dir/EdiOS/meta-intel-arduino \\
   $top_repo_dir/EdiOS/meta-arduino \\
   $top_repo_dir/EdiOS/meta-xfstk \\
-  $top_repo_dir/EdiOS/meta-acpi \\
-  $top_repo_dir/EdiOS/meta-qt5 \\
+  $top_repo_dir/meta-acpi \\
+  $top_repo_dir/meta-qt5 \\
   $extra_layers
   "
 BBLAYERS_NON_REMOVABLE ?= " \\
