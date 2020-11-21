@@ -84,11 +84,11 @@ BBLAYERS ?= " \\
   $poky_dir/meta-openembedded/meta-python \\
   $poky_dir/meta-openembedded/meta-networking \\
   $poky_dir/meta-intel \\
-  $top_repo_dir/meta-intel-edison/meta-intel-edison-bsp \\
-  $top_repo_dir/meta-intel-edison/meta-intel-edison-distro \\
-  $top_repo_dir/meta-intel-edison/meta-intel-arduino \\
-  $top_repo_dir/meta-intel-edison/meta-arduino \\
-  $top_repo_dir/meta-intel-edison/meta-xfstk \\
+  $top_repo_dir/meta-intel-edison-bsp \\
+  $top_repo_dir/meta-intel-edison-distro \\
+  $top_repo_dir/meta-intel-arduino \\
+  $top_repo_dir/meta-arduino \\
+  $top_repo_dir/meta-xfstk \\
   $top_repo_dir/meta-acpi \\
   $top_repo_dir/meta-qt5 \\
   $extra_layers
