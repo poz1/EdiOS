@@ -30,13 +30,13 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
-          echo ${{ github.workspace }}
+          echo $PWD
+          ls -l -R
           mkdir my_Edison_Workspace
           ln -s utils/Makefile.mk Makefile
           make setup
           cd out/linux64
           source poky/oe-init-build-env
-          echo $PWD
           sed -i '/^INHERIT += "sanity"$/s/^/#/' ../poky/meta/conf/sanity.conf
           echo $PWD
           bitbake -k edison-image
