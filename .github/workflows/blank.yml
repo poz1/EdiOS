@@ -37,4 +37,5 @@ jobs:
           . ./oe-init-build-env
           cd ..
           sed -i '/^INHERIT += "sanity"$/s/^/#/' meta/conf/sanity.conf
+          cd ..
           bitbake -k edison-image
