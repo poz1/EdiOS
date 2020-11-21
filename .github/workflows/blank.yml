@@ -20,19 +20,19 @@ jobs:
     runs-on: ubuntu-latest
     # The type of runner that the job will run on
     container:
-      image: docker.pkg.github.com/poz1/yoctobuilder/yoctobuilder:latest
+      image: ghcr.io/poz1/yoctobuilder:latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
+        
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          mkdir my_Edison_Workspace
+          ln -s utils/Makefile.mk Makefile
+          make setup
+          cd out/linux64
+          source poky/oe-init-build-env
+          bitbake -k edison-image
