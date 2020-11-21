@@ -33,9 +33,8 @@ jobs:
           mkdir my_Edison_Workspace
           ln -s utils/Makefile.mk Makefile
           make setup
-          cd out/linux64/poky
-          echo $PWD
-          . oe-init-build-env
+          cd out/linux64
+          source poky/oe-init-build-env
           echo $PWD
           cd ..
           echo $PWD
