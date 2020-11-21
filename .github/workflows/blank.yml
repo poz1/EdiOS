@@ -33,7 +33,7 @@ jobs:
           mkdir my_Edison_Workspace
           ln -s utils/Makefile.mk Makefile
           make setup
-          cd /__w/meta-intel-edison/meta-intel-edison/out/linux64/poky
+          cd out/linux64/poky
           . oe-init-build-env
           cd ..
           bitbake -k edison-image
