@@ -39,6 +39,5 @@ jobs:
           cd ..
           echo $PWD
           sed -i '/^INHERIT += "sanity"$/s/^/#/' poky/meta/conf/sanity.conf
-          cd ..
           echo $PWD
           bitbake -k edison-image
